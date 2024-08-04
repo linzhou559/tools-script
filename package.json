@@ -1,0 +1,16 @@
+{
+  "name": "node-script",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cropImages": "ts-node src/batchCropImages.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "sharp": "^0.33.4"
+  }
+}

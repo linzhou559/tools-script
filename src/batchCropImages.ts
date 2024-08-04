@@ -1,18 +1,19 @@
-/**
- * 图片裁剪与目录处理
- * 这是一个基于 Node.js 的脚本，它使用 `sharp` 库来裁剪图片，并使用 `fs` 和 `path` 模块来处理文件和目录路径。
- * 脚本将自动读取输入目录中的图片文件，并按照裁剪区域裁剪后保存到输出目录中。对于子目录，它将递归处理。
- * 
- * Usage
- * 1. npm install node sharp
- * 2. node batchCropImages.js
- */
+import fs from 'fs';
+import path from 'path';
+import sharp from 'sharp';
 
-const fs = require("fs");
-const path = require("path");
-const sharp = require("sharp");
+interface CropArea {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
 
-async function cropImage(inputPath, outputPath, cropArea) {
+async function cropImage(
+  inputPath: string,
+  outputPath: string,
+  cropArea: CropArea
+): Promise<void> {
   try {
     await sharp(inputPath).extract(cropArea).toFile(outputPath);
     console.log(`Processed ${inputPath} and saved to ${outputPath}`);
@@ -21,7 +22,11 @@ async function cropImage(inputPath, outputPath, cropArea) {
   }
 }
 
-function processDirectory(inputDir, outputDir, cropArea) {
+function processDirectory(
+  inputDir: string,
+  outputDir: string,
+  cropArea: CropArea
+): void {
   fs.readdir(inputDir, { withFileTypes: true }, (err, entries) => {
     if (err) {
       console.error(`Error reading directory ${inputDir}:`, err);
@@ -48,12 +53,12 @@ function processDirectory(inputDir, outputDir, cropArea) {
 }
 
 // Define the input and output directories
-const inputDirectory = "a";
-const outputDirectory = "b";
+const inputDirectory = '/mnt/c/Users/sxy/Desktop/新建文件夹';
+const outputDirectory = 'b';
 
 // Define the crop area (left, top, width, height)
 // Example: { left: 100, top: 100, width: 300, height: 300 }
-const cropArea = { left: 210, top: 85, width: 1710, height: 995 };
+const cropArea: CropArea = { left: 210, top: 85, width: 1710, height: 995 };
 
 // Ensure the output directory exists
 fs.mkdir(outputDirectory, { recursive: true }, (err) => {
