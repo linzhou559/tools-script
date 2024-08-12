@@ -11,6 +11,11 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "fabric": "^5.4.0",
     "sharp": "^0.33.4"
+  },
+  "devDependencies": {
+    "@types/fabric": "^5.3.8",
+    "@types/node": "^22.2.0"
   }
 }
