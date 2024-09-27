@@ -1,4 +1,4 @@
-# node-script
+# tools-script
 
 ## 依赖安装
 
